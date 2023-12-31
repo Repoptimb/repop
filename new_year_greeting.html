@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Greeting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #fireworks {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎉 Happy New Year! 🎉</h1>
+    <p id="question">What is your name, cutie? 😊</p>
+    <input type="text" id="nameInput">
+    <button onclick="displayGreeting()">Enter</button>
+
+    <script>
+        function playSound() {
+            // Add your own sound file for a festive touch
+            var audio = new Audio('fireworks.mp3');
+            audio.play();
+        }
+
+        function displayGreeting() {
+            var name = document.getElementById('nameInput').value;
+
+            var output = document.createElement('p');
+            output.style.fontWeight = 'bold';
+
+            if (name.toLowerCase() === 'trisha') {
+                output.innerHTML = `
+                    As we bid adieu to this year, I wanted to take a moment to reach out to you - 
+                    one of the most amazing people in my life.
+
+                    I know this year has been a tough one for you, but I want you to know that 
+                    you're one of the strongest and most resilient people I know. 
+                    Your determination and perseverance have been truly inspiring, 
+                    and I feel blessed to have you in my life.
+
+                    As we look to the future, I want to encourage you to keep pushing forward 
+                    and chasing your dreams. You are capable of achieving anything you set your mind to, 
+                    and I believe in you wholeheartedly.
+
+                    On a personal note, I have to confess that I have a bit of a crush on you. 
+                    I hope that doesn't make things awkward, but I just had to let you know how I feel. 
+                    You possess an irresistible combination of intelligence, beauty, and humor, 
+                    and I'm grateful to have you as a friend. 
+                    Perhaps we could consider exploring a deeper connection in the future? 😍
+
+                    For now, let's focus on welcoming the new year with positivity and hope. 
+                    I'm excited to see all the amazing things in store for us in the coming year, 
+                    and I can't wait to share those experiences with you. 
+                    Happy New Year, my dear! 🌟
+
+                    So let's raise a glass to 2024 and all the amazing things in store for us. 
+                    I'm honored to call you my close friend, and I can't wait to see what the future holds for us. 
+                    Happy New Year, Trisha! 🎊
+                `;
+            } else {
+                output.innerHTML = `
+                    Wishing you a fantastic New Year, ${name}! 
+                    May this year bring you joy, success, and all the happiness you deserve.
+
+                    Let's embrace the new opportunities and adventures that come our way. 
+                    May the coming year be filled with love, laughter, and exciting moments. ❤️
+
+                    Cheers to a fresh start and a wonderful journey ahead. 
+                    Happy New Year! 🎆
+                `;
+            }
+
+            document.body.appendChild(output);
+
+            var guessButton = document.createElement('button');
+            guessButton.textContent = 'Guess My Birthday';
+            guessButton.onclick = function() {
+                var birthdayGuess = prompt("Guess my birthday (date-month-year):");
+                handleBirthdayGuess(birthdayGuess);
+            };
+
+            document.body.appendChild(guessButton);
+        }
+
+        function handleBirthdayGuess(birthdayGuess) {
+            var fireworks = document.getElementById('fireworks');
+            var message = document.createElement('p');
+            message.style.fontWeight = 'bold';
+
+            if (birthdayGuess === '27-july-2006') {
+                message.innerHTML = `
+                    Correctly guessed! 🎉 Thank you so much for remembering my birthday! 🥳
+                    It means a lot to me. By the way, did you know that your birthday is on 13 November? 
+                    I remember it too! 😉
+                `;
+                playSound();
+                fireworks.style.display = 'block';
+            } else {
+                message.innerHTML = `
+                    Nice try, but that's not my birthday. 😅 Keep guessing, and let's continue celebrating the New Year! 🎆
+                `;
+            }
+
+            document.body.appendChild(message);
+        }
+    </script>
+
+    <!-- Fireworks animation -->
+    <canvas id="fireworks"></canvas>
+    <script src="fireworks.js"></script>
+</body>
+</html>
